@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding - Mark & Jenshel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Centers the entire presentation vertically and horizontally */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      background-color: #1e2814;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Authentic Olive Silk / Satin Video Background */
+    .silk-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      filter: contrast(1.08) brightness(1.04) saturate(1.08);
+    }
+
+    /* Ambient radiant lighting overlay to frame the monogram */
+    .silk-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 45%, rgba(255, 240, 180, 0.12) 0%, rgba(65, 85, 35, 0.1) 50%, rgba(18, 25, 10, 0.35) 100%);
+    }
+
+    .rsvp-layout-section,
+    .page-header,
+    main,
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    /* Main presentation wrapper centered in the viewport */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: auto;
+    }
+
+    /* Controls the logo size to serve as an elegant crest below the names */
+    .svg-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 280px;
+      max-width: 65vw;
+      height: 32vh;
+      max-height: 35vh;
+      margin: 10px auto 0 auto;
+    }
+
+    :root {
+      --color-gold-light: #ecd581;
+    }
+
+    .svg-container svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      vertical-align: middle;
+      animation: goldWhiteLogoPulse 3s ease-in-out infinite;
+    }
+
+    /* Glowing Gold & White Pulsing Animation for Logo */
+    @keyframes goldWhiteLogoPulse {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 6px rgba(236, 213, 129, 0.45)) drop-shadow(0 0 12px rgba(236, 213, 129, 0.25));
+        opacity: 0.85;
+      }
+
+      50% {
+        filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 24px rgba(236, 213, 129, 0.85)) drop-shadow(0 0 36px rgba(236, 213, 129, 0.65));
+        opacity: 1;
+      }
+    }
+
+    /* The path acting as the invisible revealer */
+    .mask-path {
+      fill: none;
+      stroke: white;
+
+      /* Keep this thick to reveal the full edges of the logo */
+      stroke-width: 200;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      /* Animation mechanics: 1 1.5 hides the thick tip at the start */
+      stroke-dasharray: 1 1.5;
+      stroke-dashoffset: 1;
+      animation: drawLogo 12s ease-in-out infinite;
+    }
+
+    /* Option B Timeline: draws forward (M -> J), holds, then un-draws backwards (J -> M) */
+    @keyframes drawLogo {
+      0% {
+        stroke-dashoffset: 1;
+      }
+
+      25% {
+        stroke-dashoffset: 0;
+      }
+
+      90% {
+        stroke-dashoffset: 0;
+      }
+
+      105% {
+        stroke-dashoffset: 1;
+      }
+
+      110% {
+        stroke-dashoffset: 1;
+      }
+    }
+
+    /* Wedding text details container */
+    .wedding-details {
+      animation: fadeDetails 12s ease-in-out infinite;
+    }
+
+    /* Crisp White Text with Outer Glowing Aura Animation */
+    .couple-names,
+    .wedding-date,
+    .footer-names {
+      color: #ffffff !important;
+      animation: goldWhiteGlowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes goldWhiteGlowPulse {
+
+      0%,
+      100% {
+        text-shadow: 0 0 6px rgba(236, 213, 129, 0.45),
+          0 0 14px rgba(236, 213, 129, 0.3),
+          0 0 22px rgba(185, 215, 110, 0.2);
+        opacity: 0.92;
+      }
+
+      50% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.9),
+          0 0 18px rgba(236, 213, 129, 0.85),
+          0 0 32px rgba(236, 213, 129, 0.65),
+          0 0 45px rgba(236, 213, 129, 0.35);
+        opacity: 1;
+      }
+    }
+
+    .couple-names {
+      font-family: 'Burgues Script', 'Great Vibes', cursive, 'Brush Script MT';
+      font-size: clamp(4.5rem, 8vw, 7.5rem);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin: 0 0 14px 0;
+      line-height: 1.15;
+      text-transform: none;
+    }
+
+    .wedding-date {
+      font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.45rem);
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin: 0 0 24px 0;
+      opacity: 0.95;
+    }
+
+    /* Elegant synchronized fade-in and fade-out for the text */
+    @keyframes fadeDetails {
+
+      0%,
+      14% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      22% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      92%,
+      100% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Authentic High-Definition Olive Silk / Satin Video Background -->
+  <video class="silk-video" autoplay muted loop playsinline>
+    <source src="Emerald Green.mp4" type="video/mp4">
+  </video>
+  <div class="silk-overlay"></div>
+
+
+  <!-- Centered invitation content -->
+  <div class="content-wrapper">
+    <!-- Wedding details: Couple names & date on top -->
+    <div class="wedding-details">
+      <h1 class="couple-names footer-names">Mark Angelo & Jenschel</h1>
+      <p class="wedding-date">12.12.26</p>
+    </div>
+
+    <!-- The Logo below the names -->
+    <div class="svg-container">
+      <svg viewBox="140 340 1134 1220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="drawing-mask">
+            <!-- Your newest traced Inkscape path -->
+            <path class="mask-path" pathLength="1"
+              d="M 265.56992,1414.8061 V 385.42891 L 653.349,1109.2832 C 739.5871,799.54706 927.85308,598.64065 1104.5828,385.42891 h 44.6534 c 0,0 -12.7688,913.07989 -7.0505,925.96949 26.1229,58.8831 -203.55038,222.4851 -220.9166,192.7144 -198.80075,31.7374 -245.93413,-37.6368 -298.47239,-103.4077 -35.35804,-122.7238 4.45309,-157.7503 42.30317,-195.0647 69.7219,-59.6881 139.44379,-43.394 209.16569,9.4007 33.11659,64.3715 101.03288,139.3341 -2.35018,162.1622 l -61.10458,23.5018" />
+          </mask>
+        </defs>
+
+        <!-- The logo image revealed by the mask -->
+        <image href="Couple Logo.png" width="1414" height="2000" mask="url(#drawing-mask)" />
+      </svg>
+    </div>
+  </div>
+</body>
+
+</html>
