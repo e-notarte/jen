@@ -16,8 +16,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      width: 100%;
       min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
       margin: 0;
       overflow: hidden;
       background-color: #1e2814;
@@ -27,11 +29,12 @@
     /* Authentic Olive Silk / Satin Video Background */
     .silk-video {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       object-fit: cover;
+      object-position: center;
       z-index: 0;
       pointer-events: none;
       filter: contrast(1.08) brightness(1.04) saturate(1.08);
@@ -43,6 +46,7 @@
       inset: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       z-index: 0;
       pointer-events: none;
       background: radial-gradient(circle at 50% 45%, rgba(255, 240, 180, 0.12) 0%, rgba(65, 85, 35, 0.1) 50%, rgba(18, 25, 10, 0.35) 100%);
@@ -66,7 +70,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
+      width: min(100%, 1600px);
+      box-sizing: border-box;
+      padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
       margin: auto;
     }
 
@@ -75,10 +81,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 280px;
+      width: clamp(170px, 24vw, 620px);
       max-width: 65vw;
-      height: 32vh;
-      max-height: 35vh;
+      height: clamp(190px, 31dvh, 620px);
+      max-height: 35dvh;
       margin: 10px auto 0 auto;
     }
 
@@ -92,6 +98,7 @@
       height: 100%;
       margin: 0 auto;
       vertical-align: middle;
+      overflow: visible;
       animation: goldWhiteLogoPulse 3s ease-in-out infinite;
     }
 
@@ -184,7 +191,7 @@
 
     .couple-names {
       font-family: 'Burgues Script', 'Great Vibes', cursive, 'Brush Script MT';
-      font-size: clamp(4.5rem, 8vw, 7.5rem);
+      font-size: clamp(3rem, 8vw, 9rem);
       font-weight: 500;
       letter-spacing: 0.02em;
       margin: 0 0 14px 0;
@@ -227,6 +234,26 @@
         transform: translateY(-8px);
       }
     }
+
+    @media (max-height: 620px) {
+      .content-wrapper {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .svg-container {
+        height: min(28dvh, 230px);
+        margin-top: 0;
+      }
+
+      .couple-names {
+        margin-bottom: 6px;
+      }
+
+      .wedding-date {
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 
@@ -246,13 +273,12 @@
       <svg viewBox="140 340 1134 1220" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <mask id="drawing-mask">
-            <!-- Your newest traced Inkscape path -->
             <path class="mask-path" pathLength="1"
               d="M 265.56992,1414.8061 V 385.42891 L 653.349,1109.2832 C 739.5871,799.54706 927.85308,598.64065 1104.5828,385.42891 h 44.6534 c 0,0 -12.7688,913.07989 -7.0505,925.96949 26.1229,58.8831 -203.55038,222.4851 -220.9166,192.7144 -198.80075,31.7374 -245.93413,-37.6368 -298.47239,-103.4077 -35.35804,-122.7238 4.45309,-157.7503 42.30317,-195.0647 69.7219,-59.6881 139.44379,-43.394 209.16569,9.4007 33.11659,64.3715 101.03288,139.3341 -2.35018,162.1622 l -61.10458,23.5018" />
           </mask>
         </defs>
 
-        <!-- The logo image revealed by the mask -->
+        <!-- Preserve the original logo artwork while scaling it with the SVG viewBox. -->
         <image href="Couple Logo.png" width="1414" height="2000" mask="url(#drawing-mask)" />
       </svg>
     </div>
