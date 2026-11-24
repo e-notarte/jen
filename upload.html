@@ -11,9 +11,9 @@
     :root {
       --gold-primary: #d4af37;
       --gold-gradient: linear-gradient(135deg, #c5a059 0%, #ebd88f 40%, #c59e4b 70%, #996e25 100%);
-      --emerald-dark: #1a2412;
-      --emerald-accent: #2c3e1e;
-      --cream-bg: #fcfbf8;
+      --ivory-bg: #fcfbf7;
+      --ivory-soft: #f7f1df;
+      --gold-text: #7d6431;
     }
 
     * {
@@ -23,12 +23,12 @@
     }
 
     body {
-      background-color: var(--emerald-dark);
-      background-image: 
-        radial-gradient(circle at 50% 20%, rgba(235, 216, 143, 0.15) 0%, rgba(26, 36, 18, 0.85) 70%),
-        linear-gradient(180deg, #182210 0%, #0f160a 100%);
+      background-color: #f2ecd9;
+      background-image:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(247, 241, 223, 0.85) 70%),
+        linear-gradient(180deg, #fcfbf7 0%, #eee6cb 100%);
       font-family: 'Montserrat', sans-serif;
-      color: #f7f5ed;
+      color: #5f5438;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -41,13 +41,13 @@
     .card {
       width: 100%;
       max-width: 480px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(252, 251, 247, 0.96);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(235, 216, 143, 0.3);
+      border: 1px solid rgba(197, 160, 89, 0.55);
       border-radius: 20px;
       padding: 36px 24px 30px 24px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 45px rgba(95, 84, 56, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.8);
       position: relative;
       overflow: hidden;
     }
@@ -56,7 +56,7 @@
       content: '';
       position: absolute;
       inset: 8px;
-      border: 1px solid rgba(235, 216, 143, 0.15);
+      border: 1px solid rgba(197, 160, 89, 0.22);
       border-radius: 14px;
       pointer-events: none;
     }
@@ -71,7 +71,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(235, 216, 143, 0.08);
+      background: rgba(235, 216, 143, 0.12);
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
     }
 
@@ -87,7 +87,7 @@
       font-size: 13px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #e5cb87;
+      color: var(--gold-text);
       margin-bottom: 6px;
     }
 
@@ -106,7 +106,7 @@
       font-family: 'Cinzel', serif;
       font-size: 13px;
       letter-spacing: 0.2em;
-      color: #c9bea3;
+      color: #99804b;
       margin-bottom: 22px;
     }
 
@@ -120,7 +120,7 @@
     .welcome-text {
       font-size: 14px;
       line-height: 1.6;
-      color: #e0ddd4;
+      color: #68604d;
       margin-bottom: 26px;
       font-weight: 300;
     }
@@ -134,7 +134,7 @@
       padding: 16px 20px;
       border-radius: 50px;
       background: var(--gold-gradient);
-      color: #1a220e;
+      color: #3f351e;
       font-family: 'Cinzel', serif;
       font-size: 15px;
       font-weight: 700;
@@ -159,18 +159,18 @@
 
     .instructions-card {
       margin-top: 28px;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(197, 160, 89, 0.08);
       border-radius: 12px;
       padding: 18px 16px;
       text-align: left;
-      border: 1px solid rgba(235, 216, 143, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.22);
     }
 
     .instructions-title {
       font-family: 'Cinzel', serif;
       font-size: 12px;
       letter-spacing: 0.15em;
-      color: #ecd581;
+      color: var(--gold-text);
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -183,7 +183,7 @@
       gap: 10px;
       margin-bottom: 10px;
       font-size: 12.5px;
-      color: #c8c5ba;
+      color: #68604d;
       line-height: 1.45;
     }
 
@@ -195,8 +195,8 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: rgba(235, 216, 143, 0.15);
-      color: #ebd88f;
+      background: rgba(197, 160, 89, 0.18);
+      color: #7d6431;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,7 +208,7 @@
     .footer-note {
       margin-top: 20px;
       font-size: 11px;
-      color: #8c887d;
+      color: #998d70;
       letter-spacing: 0.05em;
     }
 
@@ -244,10 +244,10 @@
     </button>
     <div id="uploadStatus" class="footer-note" role="status" aria-live="polite"></div>
     <div id="uploadProgress" style="display:none;margin-top:16px;">
-      <div style="height:8px;background:rgba(255,255,255,.12);border-radius:20px;overflow:hidden;">
+      <div style="height:8px;background:rgba(197,160,89,.18);border-radius:20px;overflow:hidden;">
         <div id="uploadProgressBar" style="width:0;height:100%;background:linear-gradient(90deg,#c5a059,#ebd88f);transition:width .2s;"></div>
       </div>
-      <div id="uploadProgressText" style="margin-top:8px;font-size:12px;color:#c8c5ba;"></div>
+      <div id="uploadProgressText" style="margin-top:8px;font-size:12px;color:#68604d;"></div>
     </div>
 
     <!-- Quick How-To Steps -->
