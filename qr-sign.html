@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding QR Sign - Mark Angelo & Jenschel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="qrcode.min.js"></script>
+  <style>
+    :root {
+      --gold-light: #ecd581;
+      --gold-mid: #c5a059;
+      --gold-dark: #8c703b;
+      --gold-gradient: linear-gradient(135deg, #b88d3d 0%, #ecd581 25%, #c5a059 50%, #f4e29b 75%, #926d27 100%);
+      --emerald-dark: #192313;
+      --paper-ivory: #fcfbf7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1e16;
+      background-image: radial-gradient(circle at 50% 30%, #293420 0%, #12180d 100%);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 80px 16px;
+      color: #eae5d9;
+    }
+
+    /* Top Studio Bar */
+    .studio-header {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .studio-title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      letter-spacing: 0.18em;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .studio-subtitle {
+      font-size: 13px;
+      color: #b5afa0;
+      letter-spacing: 0.05em;
+    }
+
+    /* Control Panel Box */
+    .control-panel {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(30, 38, 24, 0.85);
+      border: 1px solid rgba(236, 213, 129, 0.3);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-bottom: 35px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .help-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: #92b072;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .url-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid rgba(236, 213, 129, 0.4);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #ffffff;
+      font-family: 'Montserrat', monospace;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .url-input:focus {
+      border-color: var(--gold-light);
+      box-shadow: 0 0 12px rgba(236, 213, 129, 0.35);
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .chip-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(236, 213, 129, 0.25);
+      color: #d8d3c5;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip-btn:hover {
+      background: rgba(236, 213, 129, 0.15);
+      border-color: var(--gold-light);
+      color: #ffffff;
+    }
+
+    .panel-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 18px;
+    }
+
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-label {
+      font-size: 12px;
+      color: #a49e90;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .btn-group {
+      display: inline-flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(236, 213, 129, 0.3);
+    }
+
+    .btn-option {
+      background: rgba(0,0,0,0.3);
+      color: #c0bbb0;
+      border: none;
+      padding: 8px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .btn-option.active {
+      background: var(--gold-gradient);
+      color: #192313;
+      font-weight: 600;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold-gradient);
+      color: #141c0e;
+      border: none;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(236, 213, 129, 0.4);
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(236, 213, 129, 0.2);
+    }
+
+    /* Modal Guide */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #1e2617;
+      border: 1.5px solid var(--gold-light);
+      border-radius: 16px;
+      max-width: 580px;
+      width: 100%;
+      padding: 28px;
+      color: #e5e2d8;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #c5a059;
+      background: none;
+      border: none;
+    }
+
+    .modal-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    .modal-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .modal-step-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #141c0e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Acrylic Stand Mockup Stage */
+    .stage-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* Acrylic Base Stand Mockup */
+    .acrylic-stand-base {
+      width: 440px;
+      height: 22px;
+      background: linear-gradient(180deg, #dfba73 0%, #ecd581 30%, #a67c33 70%, #634718 100%);
+      border-radius: 4px;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.6);
+      margin-top: -6px;
+      z-index: 5;
+      position: relative;
+    }
+
+    .acrylic-stand-slit {
+      position: absolute;
+      top: 2px;
+      left: 15px;
+      right: 15px;
+      height: 3px;
+      background: #47320f;
+      border-radius: 2px;
+    }
+
+    /* 4 Brass Screws / Bolts for Acrylic Stand */
+    .screw {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff1ba 0%, #c59e4b 60%, #5e4414 100%);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+      z-index: 10;
+    }
+
+    .screw-tl { top: 16px; left: 16px; }
+    .screw-tr { top: 16px; right: 16px; }
+    .screw-bl { bottom: 16px; left: 16px; }
+    .screw-br { bottom: 16px; right: 16px; }
+
+    /* The Sign Artwork Container (5:7 ratio) */
+    .sign-card {
+      position: relative;
+      width: 420px;
+      height: 588px; /* 5x7 proportion */
+      background-color: var(--paper-ivory);
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0%, rgba(250, 247, 238, 0.95) 100%);
+      border-radius: 6px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 34px 28px 24px 28px;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    /* Outer and Inner Double Gold Border */
+    .sign-card::before {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 1.5px solid #c5a059;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .sign-card::after {
+      content: '';
+      position: absolute;
+      inset: 21px;
+      border: 0.8px solid #c5a059;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* THEME: Emerald Green Silk (matching jen/index.html) */
+    .theme-emerald {
+      background-color: #1a2512 !important;
+      background-image: 
+        radial-gradient(circle at 50% 35%, rgba(236, 213, 129, 0.12) 0%, rgba(25, 37, 18, 0.95) 75%),
+        linear-gradient(180deg, #182210 0%, #12190c 100%) !important;
+      color: #ffffff !important;
+    }
+
+    .theme-emerald::before {
+      border-color: #ecd581 !important;
+      opacity: 0.8 !important;
+    }
+
+    .theme-emerald::after {
+      border-color: #ecd581 !important;
+      opacity: 0.5 !important;
+    }
+
+    .theme-emerald .sign-serif-top,
+    .theme-emerald .sign-scan-text,
+    .theme-emerald .sign-couple-names {
+      color: #ffffff !important;
+      text-shadow: 0 0 10px rgba(236, 213, 129, 0.45);
+    }
+
+    .theme-emerald .qr-wrapper {
+      background: #ffffff !important;
+      box-shadow: 0 0 25px rgba(236, 213, 129, 0.3) !important;
+    }
+
+    /* Botanical Greenery SVG Corners */
+    .botanical-corner {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .botanical-tr {
+      top: 6px;
+      right: 6px;
+      width: 130px;
+      height: 130px;
+    }
+
+    .botanical-bl {
+      bottom: 6px;
+      left: 6px;
+      width: 130px;
+      height: 130px;
+      transform: rotate(180deg);
+    }
+
+    /* Top Monogram Crest */
+    .crest-container {
+      width: 58px;
+      height: 58px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      z-index: 2;
+    }
+
+    .crest-circle {
+      position: absolute;
+      inset: 0;
+      border: 1px solid #c5a059;
+      border-radius: 50%;
+      opacity: 0.65;
+    }
+
+    .crest-circle::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border: 0.5px dashed #c5a059;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .crest-img {
+      max-width: 44px;
+      max-height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 3px rgba(180, 140, 60, 0.3));
+    }
+
+    /* Typography Hierarchy */
+    .sign-serif-top {
+      font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #7d6431;
+      margin-bottom: 2px;
+      z-index: 2;
+    }
+
+    .sign-script-main {
+      font-family: 'Burgues Script', 'Great Vibes', cursive, 'Brush Script MT';
+      font-size: 52px;
+      font-weight: 400;
+      line-height: 1.1;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 1px 2px rgba(160, 120, 40, 0.25));
+      margin-bottom: 12px;
+      z-index: 2;
+    }
+
+    /* QR Code Display */
+    .qr-frame {
+      position: relative;
+      margin-bottom: 12px;
+      z-index: 2;
+    }
+
+    .qr-wrapper {
+      background: #ffffff;
+      width: 300px;
+      height: 300px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .qr-wrapper img, .qr-wrapper canvas {
+      display: block;
+      width: 280px;
+      height: 280px;
+    }
+
+    /* Gold Heart */
+    .gold-heart {
+      font-size: 14px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      line-height: 1;
+      z-index: 2;
+      filter: drop-shadow(0 1px 2px rgba(180, 140, 60, 0.3));
+    }
+
+    /* Scan to Upload text */
+    .sign-scan-text {
+      font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #7d6431;
+      margin-bottom: 14px;
+      z-index: 2;
+    }
+
+    /* Footer: Couple Names & Date */
+    .sign-footer {
+      margin-top: auto;
+      z-index: 2;
+    }
+
+    .sign-couple-names {
+      font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8f7743;
+      margin-bottom: 3px;
+    }
+
+    .sign-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      color: #9c8a67;
+      text-transform: uppercase;
+    }
+
+    /* Print Preview Mode */
+    body.print-mode {
+      background: #ffffff !important;
+      padding: 0 !important;
+    }
+
+    body.print-mode .studio-header,
+    body.print-mode .control-panel,
+    body.print-mode .acrylic-stand-base,
+    body.print-mode .screw {
+      display: none !important;
+    }
+
+    body.print-mode .sign-card {
+      box-shadow: none !important;
+      margin: 0 auto;
+    }
+
+    /* Standard Print CSS for 5x7 or 8x10 print paper */
+    @media print {
+      @page {
+        size: 5in 7in;
+        margin: 0;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .studio-header,
+      .control-panel,
+      .acrylic-stand-base,
+      .screw,
+      .modal-overlay {
+        display: none !important;
+      }
+
+      .stage-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+      }
+
+      .sign-card {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0.5in 0.4in !important;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Studio Header -->
+  <header class="studio-header">
+    <h1 class="studio-title">Wedding QR Sign Studio</h1>
+    <p class="studio-subtitle">Customized for Mark Angelo &amp; Jenschel • Connected to Google Drive (deverajenschel22@gmail.com)</p>
+  </header>
+
+  <!-- Interactive Control Panel -->
+  <section class="control-panel">
+    <div class="input-group">
+      <div class="input-label">
+        <span>📸 Destination Link (Where Guests Upload)</span>
+        <span class="help-link" onclick="openModal()">ℹ️ How to get your Google Drive Link</span>
+      </div>
+      <input type="text" id="targetUrlInput" class="url-input" 
+             value="upload.html" 
+             placeholder="Paste your Google Drive shared folder link or Google Form link here...">
+      
+      <div class="preset-chips">
+        <button class="chip-btn" onclick="setPreset('portal')">📱 Guest Mobile Landing Page (upload.html)</button>
+        <button class="chip-btn" onclick="setPreset('drive')">📁 Direct Google Drive Folder</button>
+        <button class="chip-btn" onclick="setPreset('form')">📝 Google Form Upload</button>
+        <button class="chip-btn" onclick="testCurrentLink()">🔗 Test Link in New Tab</button>
+      </div>
+    </div>
+
+    <div class="panel-row">
+      <!-- Theme Selection -->
+      <div class="toggle-group">
+        <span class="toggle-label">Sign Theme:</span>
+        <div class="btn-group">
+          <button class="btn-option active" id="themeIvoryBtn" onclick="setTheme('ivory')">Ivory &amp; Gold</button>
+          <button class="btn-option" id="themeEmeraldBtn" onclick="setTheme('emerald')">Emerald Silk</button>
+        </div>
+      </div>
+
+      <!-- Size Selection -->
+      <div class="toggle-group">
+        <span class="toggle-label">Stand View:</span>
+        <div class="btn-group">
+          <button class="btn-option active" id="viewStandBtn" onclick="toggleStand(true)">Acrylic Stand</button>
+          <button class="btn-option" id="viewFlatBtn" onclick="toggleStand(false)">Print Card</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn-action btn-primary" onclick="printSign()">
+          🖨️ Print Sign
+        </button>
+        <button class="btn-action btn-secondary" onclick="downloadSvg()">
+          📐 Download Vector SVG
+        </button>
+        <button class="btn-action btn-secondary" onclick="downloadPng()">
+          💾 Download High-Res PNG
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage Preview with Acrylic Stand Mockup -->
+  <div class="stage-wrapper" id="stageWrapper">
+    
+    <!-- Sign Card -->
+    <div class="sign-card" id="signCard">
+      
+      <!-- 4 Gold Stand Screws (Visible in Acrylic Stand view) -->
+      <div class="screw screw-tl"></div>
+      <div class="screw screw-tr"></div>
+      <div class="screw screw-bl"></div>
+      <div class="screw screw-br"></div>
+
+      <!-- Top Right Botanical Greenery Branch -->
+      <svg class="botanical-corner botanical-tr" viewBox="0 0 160 160" fill="none">
+        <path d="M 160,0 C 130,45 80,95 10,135" stroke="#5a7044" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Eucalyptus leaves -->
+        <path d="M 150,10 C 165,-2 180,5 175,20 C 165,30 148,22 150,10 Z" fill="#69824f" opacity="0.85"/>
+        <path d="M 130,22 C 150,18 160,35 155,48 C 140,55 128,42 130,22 Z" fill="#7f9964" opacity="0.8"/>
+        <path d="M 115,45 C 132,45 142,62 136,75 C 122,80 112,68 115,45 Z" fill="#5a7044" opacity="0.9"/>
+        <path d="M 85,75 C 105,70 120,85 115,102 C 100,110 88,98 85,75 Z" fill="#728c57" opacity="0.85"/>
+        <path d="M 68,95 C 60,75 42,70 28,78 C 24,94 40,108 68,95 Z" fill="#88a36d" opacity="0.75"/>
+        <path d="M 45,108 C 68,110 78,128 70,142 C 55,148 42,135 45,108 Z" fill="#556b3e" opacity="0.9"/>
+        <path d="M 15,122 C 20,102 10,88 -6,92 C -14,108 -2,126 15,122 Z" fill="#6c8651" opacity="0.85"/>
+        <!-- Gold berry accents -->
+        <circle cx="102" cy="62" r="3" fill="#d4af37" opacity="0.8"/>
+        <circle cx="48" cy="100" r="2.8" fill="#ecd581" opacity="0.85"/>
+      </svg>
+
+      <!-- Bottom Left Botanical Greenery Branch -->
+      <svg class="botanical-corner botanical-bl" viewBox="0 0 160 160" fill="none">
+        <path d="M 160,0 C 130,45 80,95 10,135" stroke="#5a7044" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Eucalyptus leaves -->
+        <path d="M 150,10 C 165,-2 180,5 175,20 C 165,30 148,22 150,10 Z" fill="#69824f" opacity="0.85"/>
+        <path d="M 130,22 C 150,18 160,35 155,48 C 140,55 128,42 130,22 Z" fill="#7f9964" opacity="0.8"/>
+        <path d="M 115,45 C 132,45 142,62 136,75 C 122,80 112,68 115,45 Z" fill="#5a7044" opacity="0.9"/>
+        <path d="M 85,75 C 105,70 120,85 115,102 C 100,110 88,98 85,75 Z" fill="#728c57" opacity="0.85"/>
+        <path d="M 68,95 C 60,75 42,70 28,78 C 24,94 40,108 68,95 Z" fill="#88a36d" opacity="0.75"/>
+        <path d="M 45,108 C 68,110 78,128 70,142 C 55,148 42,135 45,108 Z" fill="#556b3e" opacity="0.9"/>
+        <path d="M 15,122 C 20,102 10,88 -6,92 C -14,108 -2,126 15,122 Z" fill="#6c8651" opacity="0.85"/>
+        <!-- Gold berry accents -->
+        <circle cx="102" cy="62" r="3" fill="#d4af37" opacity="0.8"/>
+        <circle cx="48" cy="100" r="2.8" fill="#ecd581" opacity="0.85"/>
+      </svg>
+
+      <!-- Monogram Crest Emblem (interlocking M&J) -->
+      <div class="crest-container">
+        <div class="crest-circle"></div>
+        <img src="Couple Logo.png" alt="Couple Monogram" class="crest-img" onerror="this.style.display='none'">
+      </div>
+
+      <!-- Text Header -->
+      <div class="sign-serif-top">Share Your</div>
+      <div class="sign-script-main">Photos &amp; Videos</div>
+
+      <!-- Scannable QR Code -->
+      <div class="qr-frame">
+        <div class="qr-wrapper" id="qrcode"></div>
+      </div>
+
+      <!-- Gold Heart Symbol -->
+      <div class="gold-heart">♥</div>
+
+      <!-- Scan to Upload CTA -->
+      <div class="sign-scan-text">Scan to Upload</div>
+
+      <!-- Couple Names & Wedding Date Footer -->
+      <div class="sign-footer">
+        <div class="sign-couple-names">Mark Angelo &amp; Jenschel</div>
+        <div class="sign-date">12 • 12 • 2026</div>
+      </div>
+    </div>
+
+    <!-- Acrylic Stand Brass Bottom Base -->
+    <div class="acrylic-stand-base" id="standBase">
+      <div class="acrylic-stand-slit"></div>
+    </div>
+  </div>
+
+  <!-- Step-by-Step Google Drive Setup Guide Modal -->
+  <div class="modal-overlay" id="guideModal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3>Connecting to deverajenschel22@gmail.com</h3>
+      <p style="font-size: 13px; color: #c4bfb2; margin-bottom: 20px;">
+        Follow these 4 simple steps in Google Drive so guests can upload directly to your wedding album without needing permission requests:
+      </p>
+
+      <div class="modal-step">
+        <div class="modal-step-badge">1</div>
+        <div>
+          Sign in to Google Drive with <strong>deverajenschel22@gmail.com</strong> and click <strong>+ New &gt; New Folder</strong>. Name it e.g. <em>"Mark &amp; Jenschel Wedding Photos"</em>.
+        </div>
+      </div>
+
+      <div class="modal-step">
+        <div class="modal-step-badge">2</div>
+        <div>
+          Right-click the new folder and select <strong>Share &gt; Share</strong>.
+        </div>
+      </div>
+
+      <div class="modal-step">
+        <div class="modal-step-badge">3</div>
+        <div>
+          Under <strong>General access</strong>, change from <em>Restricted</em> to <strong>"Anyone with the link"</strong>, and change the role to <strong>"Editor"</strong>. (This lets wedding guests upload photos directly!).
+        </div>
+      </div>
+
+      <div class="modal-step">
+        <div class="modal-step-badge">4</div>
+        <div>
+          Click <strong>"Copy link"</strong>, paste it into the <em>Destination Link</em> box above, and click <strong>Print Sign</strong>!
+        </div>
+      </div>
+
+      <button class="btn-action btn-primary" style="width: 100%; margin-top: 15px; justify-content: center;" onclick="closeModal()">
+        Got it! Ready to Customize
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let qrcodeObj = null;
+
+    function initQRCode() {
+      const container = document.getElementById('qrcode');
+      container.innerHTML = '';
+      const enteredUrl = document.getElementById('targetUrlInput').value.trim() || 'upload.html';
+      const targetUrl = /^https?:\/\//i.test(enteredUrl) ? enteredUrl : new URL(enteredUrl, window.location.href).href;
+
+      qrcodeObj = new QRCode(container, {
+        text: targetUrl,
+        width: 280,
+        height: 280,
+        colorDark: "#1b2116",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+
+    // Update QR Code on input change
+    document.getElementById('targetUrlInput').addEventListener('input', function() {
+      const enteredUrl = this.value.trim() || 'upload.html';
+      const url = /^https?:\/\//i.test(enteredUrl) ? enteredUrl : new URL(enteredUrl, window.location.href).href;
+      if (qrcodeObj) {
+        qrcodeObj.makeCode(url);
+      } else {
+        initQRCode();
+      }
+    });
+
+    function setPreset(type) {
+      const input = document.getElementById('targetUrlInput');
+      if (type === 'portal') {
+        input.value = 'upload.html';
+      } else if (type === 'drive') {
+        input.value = 'https://drive.google.com/drive/folders/16ulzs1irW6tkBVkTsrodvgDYtAe9vbt1?usp=sharing';
+      } else if (type === 'form') {
+        input.value = 'https://forms.gle/YOUR_FORM_ID';
+      }
+      input.dispatchEvent(new Event('input'));
+    }
+
+    function testCurrentLink() {
+      const url = document.getElementById('targetUrlInput').value.trim();
+      if (url) {
+        window.open(url, '_blank');
+      }
+    }
+
+    function setTheme(theme) {
+      const card = document.getElementById('signCard');
+      const ivoryBtn = document.getElementById('themeIvoryBtn');
+      const emeraldBtn = document.getElementById('themeEmeraldBtn');
+
+      if (theme === 'emerald') {
+        card.classList.add('theme-emerald');
+        emeraldBtn.classList.add('active');
+        ivoryBtn.classList.remove('active');
+      } else {
+        card.classList.remove('theme-emerald');
+        ivoryBtn.classList.add('active');
+        emeraldBtn.classList.remove('active');
+      }
+    }
+
+    function toggleStand(showStand) {
+      const base = document.getElementById('standBase');
+      const screws = document.querySelectorAll('.screw');
+      const standBtn = document.getElementById('viewStandBtn');
+      const flatBtn = document.getElementById('viewFlatBtn');
+
+      if (showStand) {
+        base.style.display = 'block';
+        screws.forEach(s => s.style.display = 'block');
+        standBtn.classList.add('active');
+        flatBtn.classList.remove('active');
+      } else {
+        base.style.display = 'none';
+        screws.forEach(s => s.style.display = 'none');
+        flatBtn.classList.add('active');
+        standBtn.classList.remove('active');
+      }
+    }
+
+    function printSign() {
+      window.print();
+    }
+
+    function downloadSvg() {
+      const link = document.createElement('a');
+      link.href = 'wedding-qr-sign-5x7.svg';
+      link.download = 'Mark-Jenschel-Wedding-QR-Sign.svg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function downloadPng() {
+      // Create high-res canvas from sign
+      const card = document.getElementById('signCard');
+      const isEmerald = card.classList.contains('theme-emerald');
+      
+      const canvas = document.createElement('canvas');
+      const scale = 3; // 300 DPI high resolution
+      canvas.width = 420 * scale;
+      canvas.height = 588 * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(scale, scale);
+
+      // Draw background
+      ctx.fillStyle = isEmerald ? '#1a2512' : '#fcfbf7';
+      ctx.fillRect(0, 0, 420, 588);
+
+      // Draw outer & inner gold border
+      ctx.strokeStyle = '#c5a059';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(16, 16, 388, 556);
+      ctx.lineWidth = 0.8;
+      ctx.strokeRect(21, 21, 378, 546);
+
+      // Draw QR image
+      const qrImg = card.querySelector('#qrcode img') || card.querySelector('#qrcode canvas');
+      if (qrImg) {
+        // Draw white card backing
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(60, 175, 300, 300);
+        ctx.strokeStyle = '#d4af37';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(60, 175, 300, 300);
+        ctx.drawImage(qrImg, 70, 185, 280, 280);
+      }
+
+      // Draw Typography text
+      ctx.textAlign = 'center';
+
+      // SHARE YOUR
+      ctx.font = "600 16px 'Cinzel', serif";
+      ctx.fillStyle = isEmerald ? '#ffffff' : '#7d6431';
+      ctx.fillText("SHARE YOUR", 210, 120);
+
+      // Photos & Videos
+      ctx.font = "400 48px 'Great Vibes', cursive";
+      ctx.fillStyle = '#c5a059';
+      ctx.fillText("Photos & Videos", 210, 168);
+
+      // Heart
+      ctx.font = "16px sans-serif";
+      ctx.fillStyle = '#c5a059';
+      ctx.fillText("♥", 210, 422);
+
+      // SCAN TO UPLOAD
+      ctx.font = "600 16px 'Cinzel', serif";
+      ctx.fillStyle = isEmerald ? '#ffffff' : '#7d6431';
+      ctx.fillText("SCAN TO UPLOAD", 210, 452);
+
+      // Mark Angelo & Jenschel
+      ctx.font = "600 12px 'Cinzel', serif";
+      ctx.fillStyle = isEmerald ? '#ffffff' : '#8f7743';
+      ctx.fillText("MARK ANGELO & JENSCHEL", 210, 532);
+
+      // Date
+      ctx.font = "400 10px 'Montserrat', sans-serif";
+      ctx.fillStyle = isEmerald ? '#ecd581' : '#9c8a67';
+      ctx.fillText("12 • 12 • 2026", 210, 552);
+
+      // Trigger download
+      const link = document.createElement('a');
+      link.download = 'Mark-Jenschel-Wedding-Sign-5x7.png';
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function openModal() {
+      document.getElementById('guideModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('guideModal').style.display = 'none';
+    }
+
+    // Initialize on page load
+    window.onload = function() {
+      initQRCode();
+    };
+  </script>
+</body>
+</html>
