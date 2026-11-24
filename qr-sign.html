@@ -501,9 +501,9 @@
 
     .qr-wrapper {
       background: #ffffff;
-      width: 360px;
-      height: 360px;
-      padding: 6px;
+      width: 220px;
+      height: 220px;
+      padding: 8px;
       border-radius: 10px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05);
       border: 1px solid rgba(212, 175, 55, 0.35);
@@ -515,8 +515,8 @@
 
     .qr-wrapper img, .qr-wrapper canvas {
       display: block;
-      width: 348px;
-      height: 348px;
+      width: 204px;
+      height: 204px;
     }
 
     /* Gold Heart */
@@ -823,8 +823,8 @@
 
       qrcodeObj = new QRCode(container, {
         text: targetUrl,
-        width: 348,
-        height: 348,
+        width: 204,
+        height: 204,
         colorDark: "#1b2116",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
@@ -937,11 +937,11 @@
       if (qrImg) {
         // Draw white card backing
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(30, 155, 360, 360);
+        ctx.fillRect(100, 175, 220, 220);
         ctx.strokeStyle = '#d4af37';
         ctx.lineWidth = 1;
-        ctx.strokeRect(30, 155, 360, 360);
-        ctx.drawImage(qrImg, 36, 161, 348, 348);
+        ctx.strokeRect(100, 175, 220, 220);
+        ctx.drawImage(qrImg, 108, 183, 204, 204);
       }
 
       // Draw Typography text
